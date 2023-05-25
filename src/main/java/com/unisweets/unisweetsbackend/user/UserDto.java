@@ -11,4 +11,9 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String location;
+    private String about;
+    private String instagram;
+    private String youtube;
+    private String facebook;
+    private String tiktok;
 }

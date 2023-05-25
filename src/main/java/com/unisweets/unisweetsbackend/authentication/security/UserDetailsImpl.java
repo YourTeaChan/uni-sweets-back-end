@@ -1,6 +1,6 @@
 package com.unisweets.unisweetsbackend.authentication.security;
 
-import com.unisweets.unisweetsbackend.user.User;
+import com.unisweets.unisweetsbackend.user.model.User;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

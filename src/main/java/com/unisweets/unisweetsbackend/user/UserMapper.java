@@ -1,5 +1,6 @@
 package com.unisweets.unisweetsbackend.user;
 
+import com.unisweets.unisweetsbackend.user.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

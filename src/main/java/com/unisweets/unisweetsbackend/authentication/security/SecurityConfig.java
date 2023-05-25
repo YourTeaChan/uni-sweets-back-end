@@ -3,7 +3,7 @@ package com.unisweets.unisweetsbackend.authentication.security;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
-import com.unisweets.unisweetsbackend.user.UserRepository;
+import com.unisweets.unisweetsbackend.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -129,7 +129,8 @@ public class SecurityConfig {
 //                        "api/v1/auth/sign-in")
 //                .permitAll()
                 .anyRequest()
-                .authenticated()
+                .permitAll()
+//                .authenticated()
                 .and()
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .oauth2ResourceServer()

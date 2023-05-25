@@ -1,10 +1,12 @@
-package com.unisweets.unisweetsbackend.user;
+package com.unisweets.unisweetsbackend.user.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unisweets.unisweetsbackend.announcement.model.Location;
+import com.unisweets.unisweetsbackend.user.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Nationalized;
@@ -12,9 +14,11 @@ import org.hibernate.annotations.Nationalized;
 import java.time.LocalDate;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "user_information")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Entity(name = "user_basic")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,11 +59,6 @@ public class User {
 
     @ManyToOne
     private Location location;
-
-    private String instagram;
-    private String youtube;
-    private String facebook;
-    private String tiktok;
 
     public User(UserRole userRole, String username, String email, String password, String firstName, String lastName) {
         this.userRole = userRole;
