@@ -1,6 +1,7 @@
 package com.unisweets.unisweetsbackend.announcement.model;
 
 import com.unisweets.unisweetsbackend.announcement.AnnouncementState;
+import com.unisweets.unisweetsbackend.picture.Picture;
 import com.unisweets.unisweetsbackend.user.model.User;
 import jakarta.persistence.*;
 import lombok.Data;

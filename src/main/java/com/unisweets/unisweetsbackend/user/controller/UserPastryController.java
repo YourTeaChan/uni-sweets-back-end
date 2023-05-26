@@ -2,6 +2,8 @@ package com.unisweets.unisweetsbackend.user.controller;
 
 import com.unisweets.unisweetsbackend.comment.CommentDto;
 import com.unisweets.unisweetsbackend.comment.model.Comment;
+import com.unisweets.unisweetsbackend.user.UserPastryDto;
+import com.unisweets.unisweetsbackend.user.model.UserPastry;
 import com.unisweets.unisweetsbackend.user.service.UserPastryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +25,10 @@ public class UserPastryController {
     @GetMapping("/{username}/comments")
     public ResponseEntity<List<Comment>> getAllCommentsForPastry(@PathVariable String username) {
         return ResponseEntity.ok(userPastryService.getAllCommentsForPastry(username));
+    }
+
+    @PatchMapping("/{username}")
+    public ResponseEntity<UserPastry> updateUserPastry(@RequestBody UserPastryDto userPastryDto, @PathVariable String username){
+        return ResponseEntity.ok(userPastryService.updateUserPastry(userPastryDto, username));
     }
 }

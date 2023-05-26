@@ -19,10 +19,6 @@ public class UserService {
     private final UserMapper userMapper;
     private final LocationService locationService;
 
-    public User createUser(UserDto newUserDto) {
-        User newUser = userMapper.mapToEntity(newUserDto);
-        return userRepository.save(newUser);
-    }
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -36,20 +32,14 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow();
     }
 
-    public User updateUser(UserDto userDto) {
-        Assert.notNull(userDto.getUsername(), "Username is null!");
-        User userFromDb = getUserByUsername(userDto.getUsername());
-        userFromDb.setUserRole(UserRole.valueOf(userDto.getUserRole()));
+    public User updateUser(UserDto userDto, String username) {
+        User userFromDb = getUserByUsername(username);
         userFromDb.setUsername(userDto.getUsername());
+        userFromDb.setUserPicture(userDto.getUserPicture());
 //        userFromDb.setPassword(userDto.getPassword());
         userFromDb.setFirstName(userDto.getFirstName());
         userFromDb.setLastName(userDto.getLastName());
         userFromDb.setLocation(userDto.getLocation() != null ? locationService.getLocationByName(userDto.getLocation()) : null);
-//        userFromDb.setAbout(userDto.getAbout());
-//        userFromDb.setInstagram(userDto.getInstagram());
-//        userFromDb.setYoutube(userDto.getYoutube());
-//        userFromDb.setFacebook(userFromDb.getFacebook());
-//        userFromDb.setTiktok(userFromDb.getTiktok());
         return userRepository.save(userFromDb);
     }
 }

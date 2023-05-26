@@ -3,6 +3,7 @@ package com.unisweets.unisweetsbackend.user.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unisweets.unisweetsbackend.announcement.model.Location;
+import com.unisweets.unisweetsbackend.picture.Picture;
 import com.unisweets.unisweetsbackend.user.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -46,8 +47,8 @@ public class User {
     @Nationalized
     private String lastName;
 
-    @Column
-    private String userPictureURL;
+    @ManyToOne
+    private Picture userPicture;
 
     @Column(nullable = false)
     @JsonIgnore

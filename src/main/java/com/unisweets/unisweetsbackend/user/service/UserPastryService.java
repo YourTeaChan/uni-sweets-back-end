@@ -4,6 +4,8 @@ import com.unisweets.unisweetsbackend.authentication.security.Utils;
 import com.unisweets.unisweetsbackend.comment.CommentDto;
 import com.unisweets.unisweetsbackend.comment.model.Comment;
 import com.unisweets.unisweetsbackend.comment.service.CommentService;
+import com.unisweets.unisweetsbackend.picture.Picture;
+import com.unisweets.unisweetsbackend.user.UserPastryDto;
 import com.unisweets.unisweetsbackend.user.model.UserClient;
 import com.unisweets.unisweetsbackend.user.model.UserPastry;
 import com.unisweets.unisweetsbackend.user.repository.UserClientRepository;
@@ -17,6 +19,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserPastryService {
+    private final UserService userService;
     private final UserPastryRepository userPastryRepository;
     private final CommentService commentService;
     private final UserClientRepository userClientRepository;
@@ -37,4 +40,23 @@ public class UserPastryService {
     public List<Comment> getAllCommentsForPastry(String username) {
         return getUserPastryByUsername(username).getComments();
     }
+
+    public List<Picture> getAllPicturesForPastry(String username){
+        return getUserPastryByUsername(username).getPictures();
+    }
+
+    public UserPastry updateUserPastry(UserPastryDto userPastryDto, String username){
+        userService.updateUser(userPastryDto, username);
+        UserPastry userPastry = getUserPastryByUsername(userPastryDto.getUsername());
+        userPastry.setAbout(userPastryDto.getAbout());
+        userPastry.setInstagram(userPastryDto.getInstagram());
+        userPastry.setFacebook(userPastryDto.getFacebook());
+        userPastry.setYoutube(userPastryDto.getYoutube());
+        userPastry.setTiktok(userPastryDto.getTiktok());
+        return userPastryRepository.save(userPastry);
+    }
+
+
+//    public List<Picture> addPicture(String username, )
+
 }

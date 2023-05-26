@@ -7,14 +7,23 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class UserMapper {
-    public User mapToEntity(UserDto userDto) {
-        return new User(
-                UserRole.valueOf(userDto.getUserRole()),
-                userDto.getUsername(),
-                userDto.getEmail(),
-                userDto.getPassword(),
-                userDto.getFirstName(),
-                userDto.getLastName()
-        );
-    }
+//    public User mapToEntity(UserDto userDto) {
+//        return new User(
+//                UserRole.valueOf(userDto.getUserRole()),
+//                userDto.getUsername(),
+//                userDto.getEmail(),
+//                userDto.getPassword(),
+//                userDto.getFirstName(),
+//                userDto.getLastName()
+//        );
+//    }
+
+//    public UserDto mapToDto(User user){
+//        return new UserDto(
+//                user.getUsername(),
+//                user.getEmail(),
+//                u
+//        )
+//    }
+
 }

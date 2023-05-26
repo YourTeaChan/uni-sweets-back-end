@@ -7,6 +7,7 @@ import com.unisweets.unisweetsbackend.user.repository.UserClientRepository;
 import com.unisweets.unisweetsbackend.user.repository.UserPastryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.Set;
 
@@ -23,14 +24,13 @@ public class UserClientService {
     public Set<UserPastry> toggleUserLike(String clientUsername, String pastryUsername) {
         UserClient userClient = getUserClientByUsername(clientUsername);
         UserPastry userPastry = userPastryRepository.findUserPastriesByUsername(pastryUsername).orElseThrow();
-        if (userClient.getEmail().equals(Utils.getCurrentUserEmail())) {
-            userClient.toggleFavorites(userPastry);
-            userClientRepository.save(userClient);
-        }
+        Assert.state(userClient.getEmail().equals(Utils.getCurrentUserEmail()), "Toggling like forbidden");
+        userClient.toggleFavorites(userPastry);
+        userClientRepository.save(userClient);
         return userClient.getFavorites();
     }
 
-    public Set<UserPastry> getClientFavoritesByUsername(String username){
+    public Set<UserPastry> getClientFavoritesByUsername(String username) {
         return getUserClientByUsername(username).getFavorites();
     }
 }

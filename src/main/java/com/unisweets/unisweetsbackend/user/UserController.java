@@ -28,8 +28,8 @@ public class UserController {
     public ResponseEntity<User> getUserByUserName(@PathVariable String username){
         return ResponseEntity.ok(userService.getUserByUsername(username));
     }
-    @PatchMapping
-    public ResponseEntity<User> updateUser(@RequestBody UserDto userDto){
-        return ResponseEntity.ok(userService.updateUser(userDto));
+    @PatchMapping("{username}")
+    public ResponseEntity<User> updateUser(@RequestBody UserDto userDto, @PathVariable String username){
+        return ResponseEntity.ok(userService.updateUser(userDto, username));
     }
 }
