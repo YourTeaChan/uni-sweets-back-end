@@ -28,4 +28,9 @@ public class ContentController {
     public ResponseEntity<?> uploadImage(@RequestBody MultipartFile image) throws IOException {
         return ResponseEntity.ok(contentService.uploadImage(image));
     }
+
+    @DeleteMapping("{imageName}")
+    public void deleteImage(@PathVariable String imageName) {
+        contentService.deleteImage(imageName);
+    }
 }

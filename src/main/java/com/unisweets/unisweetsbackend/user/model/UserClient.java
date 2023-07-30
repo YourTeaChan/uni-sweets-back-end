@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class UserClient extends User {
             inverseJoinColumns = @JoinColumn(name = "user_pastry_id")
     )
     @JsonIgnore
-    private Set<UserPastry> favorites;
+    private List<UserPastry> favorites;
 
     public UserClient(UserRole userRole, String username, String email, String password, String firstName, String lastName) {
         super(userRole, username, email, password, firstName, lastName);

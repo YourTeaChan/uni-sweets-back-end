@@ -23,4 +23,9 @@ public class ContentService {
         pictureRepository.save(picture);
         return pictureRepository.save(picture);
     }
+
+    public void deleteImage(String imageName){
+        File imageFile = new File(FOLDER_PATH + imageName);
+        imageFile.delete();
+    }
 }

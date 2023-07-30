@@ -10,6 +10,7 @@ public class UserPastryDto extends UserDto {
     private String facebook;
     private String youtube;
     private String tiktok;
+    private String paymentCard;
 
     public UserPastryDto(String username,
                          String email,
@@ -22,12 +23,14 @@ public class UserPastryDto extends UserDto {
                          String instagram,
                          String facebook,
                          String youtube,
-                         String tiktok) {
+                         String tiktok,
+                         String paymentCard) {
         super(username, email, password, firstName, lastName, userPicture, location);
         this.about = about;
         this.instagram = instagram;
         this.facebook = facebook;
         this.youtube = youtube;
         this.tiktok = tiktok;
+        this.paymentCard = paymentCard;
     }
 }

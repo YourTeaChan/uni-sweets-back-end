@@ -1,6 +1,7 @@
 package com.unisweets.unisweetsbackend.user.service;
 
 import com.unisweets.unisweetsbackend.announcement.service.LocationService;
+import com.unisweets.unisweetsbackend.content.ContentService;
 import com.unisweets.unisweetsbackend.user.UserDto;
 import com.unisweets.unisweetsbackend.user.UserMapper;
 import com.unisweets.unisweetsbackend.user.repository.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +20,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final LocationService locationService;
+    private final ContentService contentService;
 
 
     public List<User> getUsers() {
@@ -35,7 +38,12 @@ public class UserService {
     public User updateUser(UserDto userDto, String username) {
         User userFromDb = getUserByUsername(username);
         userFromDb.setUsername(userDto.getUsername());
+
+        if (!Objects.equals(userFromDb.getUserPicture(), userDto.getUserPicture()) && userFromDb.getUserPicture() != null) {
+            contentService.deleteImage(userFromDb.getUserPicture().getPictureName());
+        }
         userFromDb.setUserPicture(userDto.getUserPicture());
+
 //        userFromDb.setPassword(userDto.getPassword());
         userFromDb.setFirstName(userDto.getFirstName());
         userFromDb.setLastName(userDto.getLastName());

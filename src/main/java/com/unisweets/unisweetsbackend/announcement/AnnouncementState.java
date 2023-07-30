@@ -4,5 +4,6 @@ public enum AnnouncementState {
     CREATED,
     TAKEN,
     IN_PROGRESS,
-    DONE
+    DONE,
+    CLOSED
 }
